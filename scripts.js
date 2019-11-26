@@ -18,16 +18,20 @@ function init(){
         shuttleBackground.style.backgroundColor = "blue";
         spaceShuttleHeight.innerHTML = 10000;
         }
-    });
+    })
     landingButton.addEventListener("click", function(){
         if((window.confirm("The shuttle is landing. Landing gear engaged."))=== true){
             flightStatus.innerHTML= "The shuttle has landed.";
             shuttleBackground.style.backgroundColor = "green";
             spaceShuttleHeight.innerHTML = 0;
         }
-    });
+    })
     missionAbortButton.addEventListener("click", function(){
-        if(9window.confirm(""))
+        if((window.confirm("Confirm that you want to abort the mission."))=== true){
+        flightStatus.innerHTML= "Mission aborted";
+        shuttleBackground.style.backgroundColor = "green";
+        spaceShuttleHeight.innerHTML = 0;
+        }
     })
 }
-  window.onload = init;
+window.onload = init;
