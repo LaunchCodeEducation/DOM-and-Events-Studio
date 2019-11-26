@@ -12,7 +12,9 @@ function init(){
     let rightButton = document.getElementById("Right");
     let leftButton = document.getElementById("Left");
     let rocket = document.getElementById("rocket");
-    takeOffButton.addEventListener("click",function(){
+    rocket.style.bottom = 0;
+    rocket.style.top = 0;
+    takeoffButton.addEventListener("click",function(){
         if(window.confirm(("Confirm that the shuttle is ready for takeoff."))===true){
         flightStatus.innerHTML= "Shuttle in flight.";
         shuttleBackground.style.backgroundColor = "blue";
@@ -33,5 +35,12 @@ function init(){
         spaceShuttleHeight.innerHTML = 0;
         }
     })
+    upButton.addEventListener("click", function(){
+        rocket.style.position -= 10;
+    })
+    downButton.addEventListener("click", function(){
+        rocket.style.position += 10;
+    })
+    
 }
 window.onload = init;
