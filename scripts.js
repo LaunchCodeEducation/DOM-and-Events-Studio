@@ -1,19 +1,27 @@
 // Write your JavaScript code here.
 // Remember to pay attention to page loading!
+let takeoffButton = null;
+let landingButton = null;
+let missionAbortButton = null;
+let rocketPosition = null;
+let upButton = null;
+let downButton = null;
+let rightButton = null;
+let leftButton = null;
+
 function init(){
-    let flightStatus = document.getElementById("flightStatus");
-    let shuttleBackground = document.getElementById("shuttleBackground");
-    let spaceShuttleHeight = document.getElementById("spaceShuttleHeight");
-    let takeoffButton = document.getElementById("takeoff");
-    let landingButton = document.getElementById("landing");
-    let missionAbortButton = document.getElementById("missionAbort");
-    let upButton = document.getElementById("Up");
-    let downButton = document.getElementById("Down");
-    let rightButton = document.getElementById("Right");
-    let leftButton = document.getElementById("Left");
-    let rocket = document.getElementById("rocket");
-    rocket.style.bottom = 0;
-    rocket.style.top = 0;
+    flightStatus = document.getElementById("flightStatus");
+    shuttleBackground = document.getElementById("shuttleBackground");
+    spaceShuttleHeight = document.getElementById("spaceShuttleHeight");
+    takeoffButton = document.getElementById("takeoff");
+    landingButton = document.getElementById("landing");
+    missionAbortButton = document.getElementById("missionAbort");
+    rocketPosition = 0;
+    upButton = document.getElementById("up");
+    downButton = document.getElementById("down");
+    rightButton = document.getElementById("right");
+    leftButton = document.getElementById("left");
+    
     takeoffButton.addEventListener("click",function(){
         if(window.confirm(("Confirm that the shuttle is ready for takeoff."))===true){
         flightStatus.innerHTML= "Shuttle in flight.";
@@ -35,12 +43,26 @@ function init(){
         spaceShuttleHeight.innerHTML = 0;
         }
     })
+
     upButton.addEventListener("click", function(){
-        rocket.style.position -= 10;
+        rocketPosition += 10;
+        shuttleBackground.style.bottom = `${rocketPosition}px`;
+        spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML) + 10000;
+
     })
     downButton.addEventListener("click", function(){
-        rocket.style.position += 10;
+        rocketPosition -= 10;
+        shuttleBackground.style.bottom = `${rocketPosition}px`;
+        spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML) + 10000;
     })
-    
+    rightButton.addEventListener("click", function(){
+        rocketPosition += 10;
+        shuttleBackground.style.left = `${rocketPosition}px`;
+
+    })
+    leftButton.addEventListener("click", function(){
+        rocketPosition -= 10;
+        shuttleBackground.style.left = `${rocketPosition}px`;
+    })
 }
 window.onload = init;
