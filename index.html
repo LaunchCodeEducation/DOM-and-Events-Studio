@@ -12,29 +12,127 @@
             <p id = "flightStatus">Space shuttle ready for takeoff</p>
             <h2>Shuttle Trajectory</h2>
         </div>
+
         <div style="text-align: center; height: 400px; width: 100%;" >
+
             <div style="text-align: center; display: inline-block;">
                 <h3>Fuel Levels</h3>
                 <p>Tank Full</p>
                 <h3>Astronaut Chat</h3>
                 <p>Houston, we are ready when you are!</p>
             </div>
+
             <div id = "shuttleBackground" style = "position: relative;">
                 <img src = "LaunchCode_rocketline_white.png" height = "75" width = "75" id = "rocket"/>
             </div>
+
             <div style = "text-align: center; display: inline-block;">
-                    <button>Up</button>
-                    <button>Down</button>
-                    <button>Right</button>
-                    <button>Left</button>
+                    <button onclick="moveUpDown('Up')">Up</button>
+                    <button onclick="moveUpDown('Down')">Down</button>
+                    <button onclick="moveSideways('Right')">Right</button>
+                    <button onclick="moveSideways('Left')">Left</button>
                     <h3>Space Shuttle Height</h3>
                     <p id='spaceShuttleHeight'>0</p><p style = "display: inline-block;"> miles</p>
             </div>
+
         </div>
+
         <div style="text-align: center;">
             <button id = "takeoff">Take off</button>
             <button id = "landing">Land</button>
             <button id = "missionAbort">Abort Mission</button>
-    </div>
+      </div>
+      
+      <script>
+        let buttonTakeoff = document.getElementById("takeoff");
+        let buttonLanding = document.getElementById("landing");
+        let buttonAbort = document.getElementById("missionAbort");
+    
+        let rocket = document.getElementById("rocket");
+        let originalPosition = rocket.offsetLeft;
+        let flightStatus = document.getElementById("flightStatus");
+        let background = document.getElementById("shuttleBackground");
+        let height = document.getElementById("spaceShuttleHeight");
+
+   
+        buttonTakeoff.addEventListener("click", clickTakeoff);
+        buttonLanding.addEventListener("click", clickLanding);
+        buttonAbort.addEventListener("click", clickAbort);
+    
+        function clickTakeoff(){
+            if(flightStatus.innerHTML !== "Shuttle in flight."){
+                let confirmation = confirm("Confirm that the shuttle is ready for takeoff.");
+                if(confirmation){
+                    flightStatus.innerHTML = "Shuttle in flight.";
+                    background.style.backgroundColor = "blue";
+                    height.innerHTML = 10000;
+                };
+            };
+        };
+    
+        function clickLanding(){
+            if(flightStatus.innerHTML === "Shuttle in flight."){
+                alert("The shuttle is landing. Landing gear engaged.");
+                flightStatus.innerHTML = "The shuttle has landed.";
+                background.style.backgroundColor = "green";
+                height.innerHTML = 0;
+                rocket.style.left = originalPosition + "px";
+            };
+        };
+    
+        function clickAbort(){
+            let confirmation = confirm("Confirm that you want to abort the mission.");
+            if(confirmation){
+                flightStatus.innerHTML = "Mission Aborted";
+                background.style.backgroundColor = "green";
+                height.innerHTML = 0;
+                rocket.style.left = originalPosition + "px";
+            };
+        };
+    
+        function moveUpDown(dir){
+            if(flightStatus.innerHTML === "Shuttle in flight."){
+                curHeight = Number(height.innerHTML);
+                switch(dir){
+                    case "Up":
+                        height.innerHTML =  curHeight + 10000;
+                        break;
+                    case "Down":
+                        if(height.innerHTML >= 10000){
+                            height.innerHTML =  curHeight - 10000;
+                        }else{
+                            height.innerHTML =  0;
+                        }
+                        break;
+                }
+            };
+        };
+    
+        function moveSideways(dir){
+            if(flightStatus.innerHTML === "Shuttle in flight."){
+                let pos = rocket.offsetLeft;
+                let width = background.offsetWidth;
+                width -= rocket.offsetWidth;
+
+                rocket.style.position = "absolute";
+                
+                switch(dir){
+                    case "Right":
+                        pos += 10;
+                        break;
+                    case "Left":
+                        pos -= 10;
+                        break;
+                }
+                if(pos <= 0){
+                    pos = 0;
+                }else if(pos >= width){
+                    pos = width;
+                };
+                rocket.style.left = pos + "px";
+            };
+        };
+    
+      </script>
     </body>
 </html>
