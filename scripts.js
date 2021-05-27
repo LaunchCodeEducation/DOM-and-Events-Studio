@@ -46,12 +46,6 @@ function init () {
         };
     });
 
-    left.addEventListener('click', function(event){
-        movement = parseInt(pic.style.left) -10 + 'px';
-    })
-        
-    })
-
 
 };
 
