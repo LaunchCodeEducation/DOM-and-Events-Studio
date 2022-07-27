@@ -19,7 +19,9 @@
 #spaceShuttleHeight {
     display: inline-block;
 }
-
+#spaceShuttleWidth {
+    display: inline-block;
+}
 .center-block {
     text-align: center; 
     display: inline-block;
