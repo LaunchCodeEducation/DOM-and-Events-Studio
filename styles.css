@@ -20,6 +20,12 @@
     display: inline-block;
 }
 
+#rocket {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
 .center-block {
     text-align: center; 
     display: inline-block;
