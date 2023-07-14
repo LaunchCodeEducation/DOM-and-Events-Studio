@@ -32,16 +32,25 @@ window.addEventListener("load", event => {
         }
     });
     const rocket = document.getElementById("rocket");
+    rocket.style.left = "0px";
+    rocket.style.bottom = "0px";
     const up = document.getElementById("up");
-    // up.addEventListener("click", event => {
-
-    // });
+    up.addEventListener("click", event => {
+        rocket.style.bottom = parseInt(rocket.style.bottom) + 10 + "px";
+        spaceShuttleHeight.innerHTML = String(Number(spaceShuttleHeight.innerHTML) + 10000)
+    });
     const down = document.getElementById("down");
+    down.addEventListener("click", event => {
+        rocket.style.bottom = parseInt(rocket.style.bottom) - 10 + "px";
+        spaceShuttleHeight.innerHTML = String(Number(spaceShuttleHeight.innerHTML) - 10000)
+    });
     const left = document.getElementById("left");
     left.addEventListener("click", event => {
-        rocket.style.left += "10px";
-        console.log("Responded left!");
+        rocket.style.left = parseInt(rocket.style.left) - 10 + "px";
     });
     const right = document.getElementById("right");
+    right.addEventListener("click", event => {
+        rocket.style.left = parseInt(rocket.style.left) + 10 + "px";
+    });
     console.log("page is fully loaded");
 });
